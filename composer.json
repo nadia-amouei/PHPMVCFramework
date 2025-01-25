@@ -1,0 +1,17 @@
+{
+    "name": "nadia/phpmwc-framework",
+    "autoload": {
+        "psr-4": {
+            "app\\" : "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "nadia",
+            "email": "nadia.amoee@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

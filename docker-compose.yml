@@ -1,0 +1,41 @@
+services:
+    webserver:
+      image: webdevops/php-apache-dev:7.4
+      container_name: my-webserver
+      ports:
+        - 8000:80
+      networks:
+        - my-network
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - '.:/app'
+      environment:
+        WEB_DOCUMENT_ROOT: '/app/public'
+
+    database:
+        image: mysql:8.0.12
+        ports:
+          - '3306:3306'
+        environment:
+          - 'MYSQL_ROOT_PASSWORD=password'
+        volumes:
+          - '/opt/mysql:/var/lib/mysql'
+        networks:
+          - my-network
+        container_name: phpflat-db
+
+    phpmyadmin:
+        image: phpmyadmin:latest
+        ports:
+          - '8080:80'
+        environment:
+          - 'PMA_HOST=database'
+        networks:
+          - my-network
+
+networks:
+    my-network:
+      driver: bridge
+
+
